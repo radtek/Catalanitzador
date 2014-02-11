@@ -480,6 +480,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\CUSTOMIZATION"
+			>
+		</File>
+		<File
 			RelativePath="..\README"
 			>
 		</File>

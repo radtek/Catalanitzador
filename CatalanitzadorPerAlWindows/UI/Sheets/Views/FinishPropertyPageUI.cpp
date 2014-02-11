@@ -21,6 +21,8 @@
 #include "FinishPropertyPageUI.h"
 #include "PropertySheetUI.h"
 
+extern int g_navegaSessionElements;
+
 FinishPropertyPageUI::FinishPropertyPageUI(FinishModel* finishModel)
 {	
 	m_hFont = NULL;
@@ -68,6 +70,12 @@ void FinishPropertyPageUI::_onInitDialog()
 	PropSheet_ShowWizButtons(getHandle(), 0, PSWIZB_CANCEL);
 	_setProgressBarLevelAndPercentage();
 	m_didUserArriveToFinishPage = true;
+
+	if (g_navegaSessionElements > 0)
+	{
+		SendMessage (GetDlgItem (getHandle(), IDC_PERCENTAGE_ACCOMPLISHED), WM_SETTEXT, 0, 
+			(LPARAM) L"Grau de catalanització dels navegadors");	
+	}
 }
 
 void FinishPropertyPageUI::_setProgressBarLevelAndPercentage()
@@ -89,7 +97,7 @@ void FinishPropertyPageUI::_onFinish()
 	bool result = false;
 
 	if (m_model->IsRebootNeed())
-	{		
+	{
 		wchar_t szMessage [MAX_LOADSTRING];
 		wchar_t szCaption [MAX_LOADSTRING];
 
@@ -97,14 +105,28 @@ void FinishPropertyPageUI::_onFinish()
 		LoadString(GetModuleHandle(NULL), IDS_MSGBOX_CAPTION, szCaption, MAX_LOADSTRING);
 
 		result = (MessageBox(getHandle(), szMessage, szCaption,
-			MB_YESNO | MB_ICONQUESTION) == IDYES);		
-	}	
-	
-	if (result)
-	{
-		_sendStats();
-		m_model->Reboot();
+			MB_YESNO | MB_ICONQUESTION) == IDYES);
+
+		if (result)
+		{
+			_sendStats();
+			m_model->Reboot();
+		}
 	}
+	else
+	{		
+		wchar_t szCaption [MAX_LOADSTRING];
+		
+		LoadString(GetModuleHandle(NULL), IDS_MSGBOX_CAPTION, szCaption, MAX_LOADSTRING);
+
+		result = (MessageBox(getHandle(), L"Voleu abrir la pàgina www.navegaencatalà.cat al vostre navegador?", szCaption,
+			MB_YESNO | MB_ICONQUESTION) == IDYES);
+
+		if (result)
+		{			
+			ShellExecute(NULL, L"open", L"http://www.navegaencatalà.cat", NULL, NULL, SW_SHOWNORMAL);
+		}
+	}	
 }
 
 NotificationResult FinishPropertyPageUI::_onNotify(LPNMHDR hdr, int /*iCtrlID*/)
@@ -112,6 +134,11 @@ NotificationResult FinishPropertyPageUI::_onNotify(LPNMHDR hdr, int /*iCtrlID*/)
 	if (hdr->code == NM_CLICK && hdr->idFrom == IDC_SYSLINK_SUGGESTIONS)
 	{		
 		m_model->OpenMailTo();
+	}
+
+	if (hdr->code == NM_CLICK && hdr->idFrom == IDC_SYSLINK_NAVEGA)
+	{		
+		ShellExecute(NULL, L"open", L"http://www.navegaencatalà.cat", NULL, NULL, SW_SHOWNORMAL);
 	}
 	return ReturnFalse;
 }

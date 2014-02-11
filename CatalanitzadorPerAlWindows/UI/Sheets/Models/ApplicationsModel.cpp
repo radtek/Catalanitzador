@@ -27,6 +27,8 @@
 // An index to ActionGroup
 static const int groupNames [] = {IDS_GROUPNAME_NONE, IDS_GROUPNAME_WINDOWS, IDS_GROUPNAME_INTERNET, IDS_GROUPNAME_OFFICE};
 
+int g_navegaSessionElements = 0;
+
 wstring ApplicationsModel::_getGroupName(ActionGroup actionGroup)
 {
 	wchar_t szGroupName[MAX_LOADSTRING];
@@ -74,6 +76,16 @@ ActionStatus ApplicationsModel::_getDefaultStatusForAction(ActionID actionID)
 				break;
 			}
 		}
+	}
+
+	// We need Windows 8.x action to setup browser
+	OSVersion version;
+	OperatingVersion operatingVersion =  version.GetVersion();
+
+	if (actionID == WindowsLPIActionID &&
+		(operatingVersion == Windows8 || operatingVersion == Windows81))
+	{
+		defaultStatus = Selected;
 	}
 
 	return defaultStatus;
@@ -293,4 +305,49 @@ void ApplicationsModel::LogRunningProcesses()
 			log += L", ";
 	}
 	g_log.Log(L"ApplicationsModel::LogRunningProcesses: %s", (wchar_t *) log.c_str());
+}
+
+
+
+void ApplicationsModel::DetermineNavegaOnlySession()
+{
+	bool navegaOnly = true;
+	Action* action; 
+	OSVersion version;
+	OperatingVersion operatingVersion =  version.GetVersion();
+	bool isWindows8 = (operatingVersion == Windows8 || operatingVersion == Windows81);
+
+	for (unsigned int i = 0; i < m_availableActions->size(); i++)
+	{
+		action = m_availableActions->at(i);
+		if (action->GetStatus() != Selected)
+			continue;
+		
+		ActionID actionId = action->GetID();
+		if (actionId != IEAcceptLanguageActionID &&
+			actionId != FirefoxActionID &&
+			actionId != ChromeActionID &&
+			actionId != FirefoxLangPackActionID &&
+			actionId != IELPIActionID &&
+			actionId != NoAction)
+		{
+			if (isWindows8 == true)
+			{
+				if (action->GetID() != WindowsLPIActionID)
+					navegaOnly = false;
+			}
+			else
+			{
+				navegaOnly = false;
+			}
+		}
+	}
+
+	if (navegaOnly)
+	{
+		g_navegaSessionElements = 3;
+		
+		if (isWindows8)
+			g_navegaSessionElements++;
+	}
 }

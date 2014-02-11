@@ -8,9 +8,10 @@
 		<date>2013-11-14T03:00:00</date>
 	</compatibility>
 	<actions>
+				
 		<!-- Catalanitzador's latest version -->
 		<action>
-	 		<id>12</id>
+	 		<id>12</id>	 		
 	 		<download>
 	 			<!-- It does not depend on a minimum version -->
 	  			<min_version>0.0.0</min_version>
@@ -26,6 +27,7 @@
 		<!-- Windows LPI -->
 		<action>
 	 		<id>1</id>
+	 		<status>0</status>
 	 		<download>
 	 			<version>XP</version>	  			
 	  			<url_1><![CDATA[http://baixades.softcatala.org/?id=3468&mirall=catalanitzador&versio=1.0&so=win32&url=http://www.softcatala.org/pub/softcatala/catalanitzador/WindowsXP/Build2006Professional/LIPsetup.msi]]></url_1>
@@ -320,6 +322,7 @@
 		
 		<!-- Acrobat Reader -->
 		<action>
+			<status>0</status>
 	 		<id>10</id>
 	 		<download>
 	  			<min_version>9.0</min_version>
@@ -392,6 +395,57 @@
 	  			<sha1_url_1>http://ftp.mozilla.org/pub/firefox/releases/[version]/SHA1SUMS</sha1_url_1>
 				<filename>Firefox.exe</filename>
 	  		</download>
+		</action>
+		
+		
+		<!--MSOfficeLPIActionID -->
+		<action>
+	 		<id>2</id>
+	 		<status>0</status>
+		</action>
+		
+		<!--ConfigureLocaleActionID -->
+		<action>
+	 		<id>3</id>
+	 		<status>0</status>
+		</action>
+		
+		<!--ConfigureDefaultLanguageActionID -->
+		<action>
+	 		<id>6</id>
+	 		<status>0</status>
+		</action>
+		
+		
+		<!--OpenOfficeActionID -->
+		<action>
+	 		<id>9</id>
+	 		<status>0</status>
+		</action>
+		
+		<!--AcrobatReaderActionID -->
+		<action>
+	 		<id>10</id>
+	 		<status>0</status>
 		</action>		
+		
+		<!--WindowsLiveActionID -->
+		<action>
+	 		<id>11</id>
+	 		<status>0</status>
+		</action>
+		
+		<!--SkypeActionID -->
+		<action>
+	 		<id>13</id>
+	 		<status>0</status>
+		</action>
+		
+		<!--iTunesActionID -->
+		<action>
+	 		<id>14</id>
+	 		<status>0</status>
+		</action>
+		
 	</actions>
 </configuration>

@@ -50,6 +50,13 @@ void WelcomePropertyPageUI::_setTransparentBitmaps()
 
 	handle = LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_HORIZONTAL_LOGO), IMAGE_BITMAP, 0, 0, LR_LOADTRANSPARENT | LR_LOADMAP3DCOLORS);	
 	SendMessage(GetDlgItem(getHandle(), IDC_HORIZONTAL_LOGO), STM_SETIMAGE, IMAGE_BITMAP, (LPARAM) handle);
+
+	// CUSTOMIZATION
+	handle = LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_FUNDACIO), IMAGE_BITMAP, 0, 0, LR_LOADTRANSPARENT | LR_LOADMAP3DCOLORS);	
+	SendMessage(GetDlgItem(getHandle(), IDC_FUNDACIO), STM_SETIMAGE, IMAGE_BITMAP, (LPARAM) handle);
+
+	//handle = LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDC_NAVEGA), IMAGE_BITMAP, 0, 0, LR_LOADTRANSPARENT | LR_LOADMAP3DCOLORS);	
+	//SendMessage(GetDlgItem(getHandle(), IDC_NAVEGA), STM_SETIMAGE, IMAGE_BITMAP, (LPARAM) handle);
 }
 
 void WelcomePropertyPageUI::_initPropertySheet()

@@ -129,6 +129,7 @@ void ApplicationsPropertyPageUI::_onInitDialog()
 	_setBoldControls();
 	_setLegendControl();
 	_enableOrDisableLicenseControls();
+	m_model->BuildListOfItems();	
 }
 
 NotificationResult ApplicationsPropertyPageUI::_onNotify(LPNMHDR hdr, int iCtrlID)
@@ -280,6 +281,7 @@ bool ApplicationsPropertyPageUI::_onNext()
 		_showNoInternetConnectionDialog();
 		return false;
 	}
+	m_model->DetermineNavegaOnlySession();
 	return true;
 }
 

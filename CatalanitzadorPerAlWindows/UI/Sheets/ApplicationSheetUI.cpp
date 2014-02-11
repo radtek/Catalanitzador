@@ -20,6 +20,8 @@
 #include <stdafx.h>
 #include "ApplicationSheetUI.h"
 
+static bool g_userChangedSelection = false;
+
 ApplicationSheetUI::ApplicationSheetUI()
 {
 	m_hIcon = NULL;

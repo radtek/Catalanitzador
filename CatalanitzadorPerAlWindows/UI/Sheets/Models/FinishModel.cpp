@@ -29,6 +29,7 @@
 #include "OptionID.h"
 #include "Options.h"
 
+extern int g_navegaSessionElements;
 
 FinishModel::FinishModel()
 {
@@ -89,6 +90,9 @@ void FinishModel::_calculateIndicatorsForProgressBar()
 				break;
 		}
 	}
+
+	if (g_navegaSessionElements > 0)
+		doable = g_navegaSessionElements;
 
 	m_completionPercentage = doable != 0 ? floor ((float) done/ (float)doable * 100.0f) : 0;
 }
