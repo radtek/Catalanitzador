@@ -28,5 +28,5 @@
 #define STRING_VERSION				_STR("2.2.4")
 #define STRING_VERSION_RESOURCES	"2.2.4.0"
 
-#define DEVELOPMENT_VERSION 1 // Comment for release version
+//#define DEVELOPMENT_VERSION 1 // Comment for release version
 
