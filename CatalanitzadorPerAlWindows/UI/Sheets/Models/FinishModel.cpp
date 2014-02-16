@@ -92,7 +92,13 @@ void FinishModel::_calculateIndicatorsForProgressBar()
 	}
 
 	if (g_navegaSessionElements > 0)
+	{
 		doable = g_navegaSessionElements;
+
+		// In case already done options are higher that the sub-set defined for navega as doable
+		if (done > doable)
+			done = doable;
+	}
 
 	m_completionPercentage = doable != 0 ? floor ((float) done/ (float)doable * 100.0f) : 0;
 }
