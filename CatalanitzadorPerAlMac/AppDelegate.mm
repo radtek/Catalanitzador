@@ -209,6 +209,20 @@ void _upload(Serializer& serializer)
     {
         [[NSFileManager defaultManager] removeItemAtPath:statsFilename error:nil];
     }
+
+    NSAlert *alert = [[NSAlert alloc] init];
+
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    [alert setMessageText:@"Avís"];
+    [alert setInformativeText:@"Voleu obrir la pàgina www.navegaencatalà.cat al vostre navegador?"];
+    [alert setAlertStyle:0];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    NSInteger response = [alert runModal];
+
+    if(response == NSAlertFirstButtonReturn)
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.navegaencatala.cat"]];
+
 }
 
 - (void)sendStatistics
@@ -232,6 +246,9 @@ void _upload(Serializer& serializer)
     actions.push_back(&firefoxAction);
     actions.push_back(&spellCheckerAction);
     actions.push_back(&chromeAction);
+    
+    // Navega customization
+    spellCheckerAction.SetStatus(NotSelected);
     
     [NSApp activateIgnoringOtherApps:YES];
     [_DoChanges setKeyEquivalent:@"\r"];
