@@ -119,12 +119,12 @@ void FinishPropertyPageUI::_onFinish()
 		
 		LoadString(GetModuleHandle(NULL), IDS_MSGBOX_CAPTION, szCaption, MAX_LOADSTRING);
 
-		result = (MessageBox(getHandle(), L"Voleu abrir la pàgina www.navegaencatalà.cat al vostre navegador?", szCaption,
+		result = (MessageBox(getHandle(), L"Abans de finalitzar us recomanem anar a www.navegaencatala.cat i difondre aquesta iniciativa; teniu premis a guanyar! Voleu obrir aquesta pàgina al vostre navegador?", szCaption,
 			MB_YESNO | MB_ICONQUESTION) == IDYES);
 
 		if (result)
 		{			
-			ShellExecute(NULL, L"open", L"http://www.navegaencatalà.cat", NULL, NULL, SW_SHOWNORMAL);
+			ShellExecute(NULL, L"open", L"http://www.navegaencatala.cat", NULL, NULL, SW_SHOWNORMAL);
 		}
 	}	
 }
@@ -138,7 +138,7 @@ NotificationResult FinishPropertyPageUI::_onNotify(LPNMHDR hdr, int /*iCtrlID*/)
 
 	if (hdr->code == NM_CLICK && hdr->idFrom == IDC_SYSLINK_NAVEGA)
 	{		
-		ShellExecute(NULL, L"open", L"http://www.navegaencatalà.cat", NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, L"open", L"http://www.navegaencatala.cat", NULL, NULL, SW_SHOWNORMAL);
 	}
 	return ReturnFalse;
 }

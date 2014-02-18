@@ -22,7 +22,7 @@
 
 #pragma once
 
-#define CONTACT_EMAIL L"mailto://catalanitzador@navegaencatalà.cat"
+#define CONTACT_EMAIL L"mailto://catalanitzador@navegaencatala.cat"
 
 #if DEVELOPMENT_VERSION
 
