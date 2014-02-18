@@ -214,7 +214,7 @@ void _upload(Serializer& serializer)
 
     [alert setAlertStyle:NSInformationalAlertStyle];
     [alert setMessageText:@"Avís"];
-    [alert setInformativeText:@"Voleu obrir la pàgina www.navegaencatalà.cat al vostre navegador?"];
+    [alert setInformativeText:@"Us recomanem anar a www.navegaencatala.cat i difondre aquesta iniciativa; teniu premis a guanyar! Voleu obrir aquesta pàgina al vostre navegador?"];
     [alert setAlertStyle:0];
     [alert addButtonWithTitle:@"Yes"];
     [alert addButtonWithTitle:@"No"];
