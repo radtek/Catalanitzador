@@ -19,8 +19,6 @@
 
 #include "stdafx.h"
 #include "CarregadorPerAlWindows.h"
-#include "ActiveX.h"
-#include "Authorization.h"
 #include "guid.h"
 #include "Registry.h"
 #include "HttpFormInet.h"
