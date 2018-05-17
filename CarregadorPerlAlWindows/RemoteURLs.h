@@ -22,18 +22,5 @@
 
 #pragma once
 
-#define CONTACT_EMAIL L"mailto://catalanitzador@softcatala.org"
+#define REMOTE_CONFIGURATION_URL L"https://www.softcatala.org/pub/softcatala/catalanitzador/carregador-configuration.xml"
 
-#if DEVELOPMENT_VERSION
-
-	#define APPLICATON_WEBSITE	L"https://www.softcatala.org/dev-catalanitzador/"
-	#define UPLOAD_URL _STR("https://www.softcatala.org/dev-catalanitzador/parser.php")
-	#define REMOTE_CONFIGURATION_URL L"https://www.softcatala.org/pub/softcatala/catalanitzador/configuration.xml"
-
-#else
-	
-	#define APPLICATON_WEBSITE	L"https://www.softcatala.org/catalanitzador"
-	#define UPLOAD_URL _STR("https://www.softcatala.org/catalanitzador/parser.php")
-	#define REMOTE_CONFIGURATION_URL L"https://www.softcatala.org/pub/softcatala/catalanitzador/configuration.xml"
-
-#endif
