@@ -19,9 +19,7 @@
 
 #include "stdafx.h"
 #include "CarregadorPerAlWindows.h"
-#include "guid.h"
-#include "Registry.h"
-#include "HttpFormInet.h"
+#include "CatalanitzadorUpdateAction.h"
 #include "SilentInstallation.h"
 #include "DownloadNewVersionDlgUI.h"
 #include "Actions.h"
@@ -52,13 +50,11 @@ void CarregadorPerAlWindows::_updateCatalanitzadorAction(Action* catalanitzadorA
 	if (downloadNewVersionDlgUI.Run(NULL) == IDCANCEL)
 	{
 		catalanitzadorAction->SetStatus(NotSelected);
-	}	
-		
+	}
 }
 
 int CarregadorPerAlWindows::Run(wstring commandLine)
 {
-	Registry registry;
 	ApplicationExecutor applicationExecutor;
 
 	_initLog();	
@@ -68,7 +64,8 @@ int CarregadorPerAlWindows::Run(wstring commandLine)
 
 	DownloadManager downloadManager;
 	Actions actions(&downloadManager);
-	Action* catalanitzadorAction = actions.GetActionFromID(CatalanitzadorUpdateActionID);
+	CatalanitzadorUpdateAction* catalanitzadorAction = (CatalanitzadorUpdateAction *)actions.GetActionFromID(CatalanitzadorUpdateActionID);	
+	catalanitzadorAction->SetNoRunningCheck();
 	_updateCatalanitzadorAction(catalanitzadorAction);
 	return TRUE;
 }
