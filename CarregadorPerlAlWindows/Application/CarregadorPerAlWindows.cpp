@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2011 Jordi Mas i Hernàndez <jmas@softcatala.org>
+ * Copyright (C) 2011-2018 Jordi Mas i Hernàndez <jmas@softcatala.org>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -66,20 +66,10 @@ int CarregadorPerAlWindows::Run(wstring commandLine)
 	if (_isAlreadyRunning() == true)
 		return RETURN_ERROR;	
 
-	Guid guid(&registry);
-	guid.Get();
-
-	m_serializer.OpenHeader();
-	m_serializer.Serialize(&guid);
-	guid.Store();
-
-	OleInitialize(0);
-
 	DownloadManager downloadManager;
 	Actions actions(&downloadManager);
 	Action* catalanitzadorAction = actions.GetActionFromID(CatalanitzadorUpdateActionID);
 	_updateCatalanitzadorAction(catalanitzadorAction);
-
 	return TRUE;
 }
 
@@ -89,16 +79,12 @@ void CarregadorPerAlWindows::_initLog()
 
 	swprintf_s(szApp, L"CarregadorPerAlWindows version %s", STRING_VERSION);
 	g_log.CreateLogInTempDirectory(L"CarregadorPerAlWindows.log",szApp);
-	
-	wchar_t szOSInfo [2048];
-	m_osVersion.GetLogInfo(szOSInfo, sizeof (szOSInfo));
-	g_log.Log(szOSInfo);
 }
 
 
 bool CarregadorPerAlWindows::_isAlreadyRunning()
 {
-	m_hEvent = CreateEvent(NULL, TRUE, FALSE, L"Catalanitzador");
+	m_hEvent = CreateEvent(NULL, TRUE, FALSE, L"CarregadorPerAlWindows");
     if (GetLastError() == ERROR_ALREADY_EXISTS) 
 	{
         CloseHandle(m_hEvent);

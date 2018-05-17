@@ -21,8 +21,6 @@
 #pragma once
 
 #include "stdafx.h"
-#include "Serializer.h"
-#include "OSVersion.h"
 #include "Action.h"
 
 #include <string>
@@ -44,6 +42,4 @@ private:
 		
 		HINSTANCE m_hInstance;
 		HANDLE m_hEvent;
-		Serializer m_serializer;
-		OSVersion m_osVersion;
 };
